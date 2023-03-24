@@ -28,14 +28,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.avensky.BetterDates"
+      "bundleIdentifier": "com.avensky.BetterDates",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.avensky.BetterDates"
+      "package": "com.avensky.BetterDates",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
