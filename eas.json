@@ -20,6 +20,7 @@
   "submit": {
     "production": {
       "ios": {
+        "appName": "Better Dates",
         "appleId": "urielzacarias@gmail.com",
         "ascAppId": "6444273571",
         "appleTeamId": "QKF3X3UZKX"
