@@ -1,145 +1,74 @@
-import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
-import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, Button, Platform, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import Navigator from './navigation/Navigator';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { init } from "./utility/local-database";
+//import * as SplashScreen from 'expo-splash-screen';
 
-// Notifications configuration handler
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
-
+//SplashScreen.preventAutoHideAsync();
 export default function App() {
+  // set local database constants
+  const [dbInitialized, setDbInitialized] = useState(false);
 
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
-  
-  // Defining consts that do not re-render
-  const notificationListener = useRef();
-  const responseListener = useRef();
+  // load local database
+  useEffect(()=>{
+    init()
+      .then(()=> {
+        console.log('db Initialzied')
+//        SplashScreen.hideAsync();
+        setDbInitialized(true)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  },[])
 
-  useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+  if (!dbInitialized) {
+    return null
+  }
 
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      console.log(notification)
-      setNotification(notification);
-    });
+//  const [appIsReady, setAppIsReady] = useState(false);
+//
+//  useEffect(() => {
+//    async function prepare() {
+//      try {
+//        // Keep the splash screen visible while we fetch resources
+//        await SplashScreen.preventAutoHideAsync();
+//        // Pre-load fonts, make any API calls you need to do here
+//        // await Font.loadAsync(Entypo.font);
+//        // Artificially delay for two seconds to simulate a slow loading
+//        // experience. Please remove this if you copy and paste the code!
+//        await new Promise(resolve => setTimeout(resolve, 2000));
+//      } catch (e) {
+//        console.warn(e);
+//      } finally {
+//        // Tell the application to render
+//        setAppIsReady(true);
+//      }
+//    }
+//
+//    prepare();
+//  }, []);
+//
+//  const onLayoutRootView = useCallback(async () => {
+//    if (appIsReady) {
+//      // This tells the splash screen to hide immediately! If we call this after
+//      // `setAppIsReady`, then we may see a blank screen while the app is
+//      // loading its initial state and rendering its first pixels. So instead,
+//      // we hide the splash screen once we know the root view has already
+//      // performed layout.
+//      await SplashScreen.hideAsync();
+//    }
+//  }, [appIsReady]);
+//
+//  if (!appIsReady) {
+//    return null;
+//  }
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    //cleanup to avoid memory leaks
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-      }}>
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Title: {notification && notification.request.content.title} </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
-      </View>
-      <Button
-        title="Press to schedule a notification"
-        onPress={async () => {
-          await schedulePushNotification();
-        }}
-      />
-      <Button
-        title="Send a push notification"
-        onPress={async () => {
-          await sendPushNotificationHandler();
-        }}
-      />
-    </View>
+    <Provider store={store}>
+      <Navigator />
+    </Provider>
   );
-}
-
-//send notification
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
-}
-
-//send push notification
-function sendPushNotificationHandler(){
-  fetch('https://exp.host/--/api/v2/push/send',{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      to: 'ExponentPushToken[mpijUfOEv9WZAe29Hl6Lzu]',
-      title: 'Test - sent from a device!',
-      body: 'This is a test!'
-    })
-  });
-}
-
-//get device token
-async function registerForPushNotificationsAsync() {
-  let token;
-
-  //set Andriod permissions
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-
-  if (Device.isDevice) {
-    //check permissions
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    
-    //Get Permission
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-
-    //Get token if device has permission
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  return token;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
