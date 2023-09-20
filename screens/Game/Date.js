@@ -63,7 +63,7 @@ const Date = (props) => {
                 // fontWeight="bold" 
                 // color="white"
                 style={styles.text}
-            >Aleatorizar!</Text>
+            >Randomize!</Text>
         </Pressable>
 
         {/* <Pressable 
