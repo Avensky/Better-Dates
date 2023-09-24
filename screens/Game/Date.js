@@ -19,21 +19,10 @@ const Date = (props) => {
 
     console.log('props.date : ', props.date)
     return <View 
-        // _dark={{ bg: "blueGray.900" }}
-        // _light={{ bg: "blueGray.300" }} 
         style={{alignItems:'center', justifyContent:'center'}}
         >
         <View style={{ alignItems:'center', justifyContent:'center', margin:2}}>
-            <View 
-                style={{ width: '100%'}}
-                // w="100%" 
-                // p='2' 
-                // mb="2" 
-                // dark={{ bg: "blueGray.900" }} 
-                // _light={{ bg: "blueGray.800" }} 
-                // alignItems='center' 
-                // justifyContent={'center'}
-            >
+            <View style={{ width: '100%'}}>
                 <Text style={styles.titleText}>
                     {props.date ? props.date.name : null}
                 </Text>
@@ -46,60 +35,15 @@ const Date = (props) => {
                 source={ props.date 
                     ? props.date.imageUrl 
                     : null} 
-                // w={320} 
-                // h={400} 
             />
-        <Pressable 
-            // my='2' 
-            // w='100%' 
-            // rounded="md" 
-            style={styles.button}
-            onPress={() => rollHandler()} 
-        >
-            <Text 
-                // textTransform="uppercase" 
-                // textAlign="center" 
-                // fontSize="sm" 
-                // fontWeight="bold" 
-                // color="white"
-                style={styles.text}
-            >Randomize!</Text>
-        </Pressable>
-
-        {/* <Pressable 
-            //my='2' 
-            //w='100%' 
-            //rounded="md" 
-            onPress={props.resetDate} 
-        >
-            {({
-            isHovered,
-            isFocused,
-            isPressed
-            }) => {
-            return <View 
-                //p='4' 
-                // bg={ isPressed 
-                //     ? "blueGray.800" 
-                //     : isHovered ? "blueGray.900" : "blueGray.800"
-                // } 
-                style={{
-                    transform: [{
-                        scale: isPressed ? 0.96 : 1
-                    }]
-                }}
+            <Pressable 
+                style={styles.button}
+                onPress={() => rollHandler()} 
             >
                 <Text 
-                    // textTransform="uppercase"
-                    // textAlign="center" 
-                    // fontSize="sm" 
-                    // fontWeight="bold" 
-                    // color="white"
                     style={styles.text}
-                >Reset</Text>
-            </View>
-            }}
-        </Pressable> */}
+                >Randomize!</Text>
+            </Pressable>
         </View>
     </View>
 }
