@@ -8,6 +8,7 @@ import Date from "./Date";
 
 export default function Menu(props) {
     const [startGame, setStartGame] = useState(false)
+
     let game
     
     const startGameHandler = (game) => {
@@ -64,7 +65,7 @@ export default function Menu(props) {
                 // justifyContent="space-around"
             >
                 <Button onPress={()=> props.navigation.navigate('Date')}>
-                    Citas
+                    Better Dates
                 </Button>
             </View>
             {game} 

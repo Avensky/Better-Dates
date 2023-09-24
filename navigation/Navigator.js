@@ -14,19 +14,6 @@ import Date                     from '../screens/Game/Date';
 // constants
 const Stack = createStackNavigator();
 
-// Authentication screens
-// function Authentication() {
-//     return (
-//         <Stack.Navigator 
-//             screenOptions={{
-//                 headerStyle: {backgroundColor: Colors.primary500}
-//             }}
-//         >
-//             <Stack.Screen name="Login" component={Login} />
-//             <Stack.Screen name="Register" component={Register} />
-//         </Stack.Navigator>
-//     );
-// };
 
 // Authenticated screens
 function AuthenticatedStack(props){
@@ -45,15 +32,6 @@ function AuthenticatedStack(props){
                 component={Menu}
                 props={props}
                 options={{
-                    headerRight: ({tintColor}) => (
-                        <IconButton
-                            icon="exit"
-                            color={tintColor}
-                            size={24}
-                            onPress={()=>{}}
-                            //onPress={()=>props.logout()}
-                        />
-                    ),
                     title: 'Menu'
                 }}
             />
@@ -61,16 +39,7 @@ function AuthenticatedStack(props){
             <Stack.Screen
                 name="Date"
                 options={{
-                    title: 'Citas Romanticas',
-                    // headerRight:({tintColor})=>(
-                    //     <Button
-                    //         name='plus'
-                    //         title='Memories'
-                    //         color={tintColor}
-                    //         size={24}
-                    //         onPress={()=>navigation.navigate('Moments')}
-                    //     >Memories</Button>
-                    // )
+                    title: 'Better Dates'
                 }}
                 component={Date}
             />
