@@ -1,8 +1,7 @@
 
 // styling
 import { Colors }               from '../constants/styles';
-import IconButton               from '../components/ui/IconButton';
-import { Button }               from 'react-native';
+
 // navigation
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer }  from '@react-navigation/native';
