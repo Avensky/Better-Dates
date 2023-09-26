@@ -11,7 +11,7 @@
     ],
     "name": "BetterDates",
     "slug": "BetterDates",
-    "version": "4.0.4",
+    "version": "4.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,7 +21,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/80da23ff-4f29-4f1c-bbd5-f47791a6e015"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -29,7 +30,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.avensky.BetterDates",
-      "buildNumber": "4.0.4"
+      "buildNumber": "4.0.5"
     },
     "android": {
       "adaptiveIcon": {
@@ -37,7 +38,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.avensky.BetterDates",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.ico"
@@ -46,6 +47,9 @@
       "eas": {
         "projectId": "80da23ff-4f29-4f1c-bbd5-f47791a6e015"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
