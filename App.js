@@ -3,7 +3,7 @@ import Navigator from './navigation/Navigator';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { init } from "./utility/local-database";
-//import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
 
 //SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -14,9 +14,10 @@ export default function App() {
   useEffect(()=>{
     init()
       .then(()=> {
-        console.log('db Initialzied')
-//        SplashScreen.hideAsync();
-        setDbInitialized(true)
+        console.log('db Initialzied');
+//          SplashScreen.hide();
+        SplashScreen.hideAsync();
+        setDbInitialized(true);
       })
       .catch((err) => {
         console.log(err);

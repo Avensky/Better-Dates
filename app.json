@@ -11,7 +11,7 @@
     ],
     "name": "BetterDates",
     "slug": "BetterDates",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -30,7 +30,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.avensky.BetterDates",
-      "buildNumber": "4.0.5"
+      "buildNumber": "4.0.6"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,7 +38,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.avensky.BetterDates",
-      "versionCode": 8
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.ico"
