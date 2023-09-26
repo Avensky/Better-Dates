@@ -14,15 +14,26 @@ export default function App() {
   useEffect(()=>{
     init()
       .then(()=> {
-        console.log('db Initialzied');
-//          SplashScreen.hide();
-        SplashScreen.hideAsync();
+        console.log('sql db started successfully');
         setDbInitialized(true);
       })
       .catch((err) => {
+        console.log('sql db failed to start');
         console.log(err);
       })
   },[])
+
+  useEffect(() => {
+    setTimeout(() => {
+      //  if (Platform.OS == 'ios') {
+      //    // RNBootSplash.hide();
+      //  } else {
+      //    SplashScreen.hideAsync();
+      //  }
+       SplashScreen.hideAsync();
+     }, 1000);
+ 
+  }, []);
 
   if (!dbInitialized) {
     return null
