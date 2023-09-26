@@ -181,10 +181,13 @@ export const updateDateFail = (error) => {
 }
 
 export const updateDateSuccess = (payload) => {
-    console.log('updateDateSuccess = ', payload.selection)
+    
     const selection = payload.selection
     //console.log('updateDateSuccess', selection)
     const date = dateIdeas[selection]
+    console.log('updateDateSuccess = ', date)
+    updateDate(date)
+
     return {
         type: actionTypes.UPDATE_DATE_SUCCESS,
         payload: date
@@ -198,8 +201,8 @@ export const updateDateGame = () => {
     //const date = dateIdeas[randomInt+1]
     const selectedDate = {selection: randomInt, game: 'dating'}
     console.log('updateDateGame selectedDate = ', selectedDate)
-    return dispatch => {
-        dispatch(updateDateStart())
+    return async dispatch => {
+        await dispatch(updateDateStart());
         updateDate(selectedDate)
             .then(res => dispatch(updateDateSuccess(selectedDate)))
             .catch(err => dispatch(updateDateFail(err)))

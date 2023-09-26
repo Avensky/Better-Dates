@@ -35,8 +35,18 @@ export function insertDate(date) {
                     date.selection
                 ],
                 (_, result) => {
-                    console.log(result);
-                    resolve(result);
+                    const date = [];
+                    for (const dp of result.rows._array) {
+                        date.push(
+                            new Date(
+                                dp.game,
+                                dp.selection,
+                                // dp.id
+                            )
+                        )
+                    }
+                    console.log('insertDate ',date);
+                    resolve();
                 },
                 (_,error)=>{
                     reject(error);
@@ -84,10 +94,9 @@ export function updateDate(date) {
                     date.selection,
                     date.game,
                 ],
-                (_, result) => {
-                    //const date = result.rows._array[0];
-                    console.log('sql updateDate = ', result)
-                    resolve(result);
+                (_, ) => {
+                    console.log('sql updateDate ', date)
+                    resolve();
                 },
                 (_, error) => {
                     reject(error);
@@ -106,13 +115,12 @@ export function getDate() {
                 [], 
                 (_, result) => {
                     const date = [];
-                    //console.log('sql getDate = ',result.rows._array[0])
+                    console.log('sql getDate = ',result.rows._array[0])
                     for (const dp of result.rows._array) {
                         date.push(
                             new Date(
                                 dp.game,
                                 dp.selection,
-                                dp.id
                             )
                         )
                     }
