@@ -8,12 +8,14 @@
       "distribution": "internal"
     },
     "preview": {
+      "channel": "staging",
       "android": { 
         "buildType": "apk"
       },
-        "distribution": "internal"
+      "distribution": "internal"
     },
     "production": {
+      "channel": "production",
       "node": "16.18.0"
     }
   },
