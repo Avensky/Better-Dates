@@ -20,7 +20,7 @@ export default Button;
 const styles = StyleSheet.create({
   button: {
     width: 300,
-    borderRadius: 6,
+    borderRadius: 50,
     paddingVertical: 6,
     paddingHorizontal: 12,
     backgroundColor: Colors.primary500,
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+    marginVertical: 20,
   },
   pressed: {
     opacity: 0.7,
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 48,
+    fontSize: 32,
     fontWeight: 'bold'
   },
 });

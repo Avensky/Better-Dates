@@ -4,28 +4,25 @@ import Button from '../../components/ui/Button';
 import Date from "./Date";
 
 export default function Menu(props) {
-    const [startGame, setStartGame] = useState(false)
+    const [game, setGame] = useState(false)
 
-    let game
+    let dates
     
-    const startGameHandler = (game) => {
-      setStartGame(game)
+    const setGameHandler = (game) => {
+      setGame(game)
     }
     
-    if (startGame === 'cita') {
-      game = <Date onPress={()=> startGameHandler('cita')} />
+    if (game === 'dates') {
+      dates = <Date onPress={()=> setGameHandler('dates')} />
     } 
 
     
     return (      
         <View style={styles.container}>
-            <View style={styles.buttonContainer}>
-                <Button onPress={()=> props.navigation.navigate('Date')}>
-                    Better Dates
-                </Button>
-            </View>
-            {game} 
-            
+            <Button onPress={()=> props.navigation.navigate('Date')}>
+                Better Dates
+            </Button>
+            {dates} 
         </View>
     );
 ;}
@@ -37,8 +34,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    buttonContainer: {
     }
   });
   

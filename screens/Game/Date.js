@@ -3,6 +3,8 @@ import { View, Pressable, Text, Image, StyleSheet } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/index';
+import { Colors } from '../../constants/styles';
+import Button from '../../components/ui/Button';
 
 const Date = (props) => {
     const isFocused = useIsFocused();
@@ -19,11 +21,10 @@ const Date = (props) => {
 
     console.log('props.date : ', props.date)
     return <View 
-        style={{alignItems:'center', justifyContent:'center'}}
+        style={styles.container}
         >
-        <View style={{ alignItems:'center', justifyContent:'center', margin:2}}>
             <View style={{ width: '100%'}}>
-                <Text style={styles.titleText}>
+                <Text style={styles.titleText} numberOfLines={1}>
                     {props.date ? props.date.name : null}
                 </Text>
             </View>        
@@ -36,15 +37,12 @@ const Date = (props) => {
                     ? props.date.imageUrl 
                     : null} 
             />
-            <Pressable 
+            <Button 
                 style={styles.button}
                 onPress={() => rollHandler()} 
             >
-                <Text 
-                    style={styles.text}
-                >Randomize!</Text>
-            </Pressable>
-        </View>
+                Randomize!
+            </Button>
     </View>
 }
 const mapStateToProps = state => {
@@ -66,8 +64,12 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(Date);
 
 const styles = StyleSheet.create({
-    imageContainer: {
-
+    container: {
+        alignItems:'center', 
+        justifyContent:'center',
+        backgroundColor: 'white',
+        height: '100%',
+        margin:2
     }, 
     image: {
         width:360,
@@ -78,26 +80,18 @@ const styles = StyleSheet.create({
 
     },
     titleText: {
-        fontSize: 32,
+        fontSize: 26,
         fontWeight: '800',
         textTransform: 'uppercase',
         padding: 4,
         margin: 8,
         width: '100%',
-    },
-    button: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        padding: 12,
-        margin: 8,
-        backgroundColor: 'red',
-        borderColor: 'black',
-        borderWidth: 2,
-        borderRadius: 50,
+        overflow: 'hidden',
+        textAlign:'center'
     },
     text: {
         fontSize: 24,
         fontWeight: 'bold',
-    //    color:'white',
+        color:'white',
     }
 });

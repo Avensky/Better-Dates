@@ -1,17 +1,8 @@
 {
   "expo": {
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/icon.png",
-          "color": "#ffffff"
-        }
-      ]
-    ],
     "name": "BetterDates",
     "slug": "BetterDates",
-    "version": "4.0.10",
+    "version": "5.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -30,7 +21,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.avensky.BetterDates",
-      "buildNumber": "4.0.10"
+      "buildNumber": "5.0.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,10 +29,10 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.avensky.BetterDates",
-      "versionCode": 13
+      "versionCode": 14
     },
     "web": {
-      "favicon": "./assets/favicon.ico"
+      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {

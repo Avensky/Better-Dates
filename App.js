@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Navigator from './navigation/Navigator';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { init } from "./utility/local-database";
 import * as SplashScreen from 'expo-splash-screen';
+import Navigator from './components/Navigator/Navigator';
 
-//SplashScreen.preventAutoHideAsync();
 export default function App() {
+
   // set local database constants
   const [dbInitialized, setDbInitialized] = useState(false);
 
-  // load local database
+  // local database
   useEffect(()=>{
     init()
       .then(()=> {
@@ -24,24 +24,20 @@ export default function App() {
   },[])
 
   useEffect(() => {
-    setTimeout(() => {
-      //  if (Platform.OS == 'ios') {
-      //    // RNBootSplash.hide();
-      //  } else {
-      //    SplashScreen.hideAsync();
-      //  }
-       SplashScreen.hideAsync();
+    setTimeout(async () => {
+      if (Platform.OS == 'ios') {
+        //await RNBootSplash.hide();
+      } else {
+        await SplashScreen.hideAsync();
+      }
      }, 1000);
  
   }, []);
 
-  if (!dbInitialized) {
-    return null
-  }
-  
+  if (!dbInitialized) { return null };
   return (
     <Provider store={store}>
       <Navigator />
     </Provider>
-  );
+    );
 };
