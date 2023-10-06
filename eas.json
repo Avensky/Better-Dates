@@ -13,6 +13,9 @@
         "buildType": "apk"
       },
         "distribution": "internal"
+    },
+    "production": {
+      "node": "16.18.0"
     }
   },
   "submit": {
